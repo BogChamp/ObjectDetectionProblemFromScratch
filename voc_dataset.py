@@ -10,14 +10,14 @@ import torch
 import cv2
 import os
 
-#VOC_CLASSES = ('background','license_plate','car')
-VOC_CLASSES = ('background','car')
+VOC_CLASSES = ('background','license_plate','car')
+#VOC_CLASSES = ('background','car')
 
 bbox_params = A.BboxParams(format='albumentations', min_area=100, min_visibility=0.5, label_fields=['labels'])
 
 light_transform = A.Compose([   
     A.HorizontalFlip(p=0.5),
-    A.RandomResizedCrop(height=360, width=640, p=0.5, scale=(0.7, 1.0)),
+    A.RandomResizedCrop(height=720, width=1280, p=0.5, scale=(0.7, 1.0)),
     A.GaussNoise(var_limit=(100, 150), p=0.5),
     A.augmentations.transforms.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225), always_apply=True),
     A.pytorch.transforms.ToTensorV2()
@@ -25,7 +25,7 @@ light_transform = A.Compose([
 
 medium_transform = A.Compose([
     A.HorizontalFlip(p=0.5),
-    A.RandomResizedCrop(height=360, width=640, p=0.5, scale=(0.7, 1.0)),
+    A.RandomResizedCrop(height=720, width=1280, p=0.5, scale=(0.7, 1.0)),
     A.MotionBlur(blur_limit=17, p=0.5),
     A.augmentations.transforms.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225), always_apply=True),
     A.pytorch.transforms.ToTensorV2()
@@ -33,7 +33,7 @@ medium_transform = A.Compose([
 
 strong_transform = A.Compose([
     A.HorizontalFlip(p=0.5),
-    A.RandomResizedCrop(height=360, width=640, p=0.5, scale=(0.7, 1.0)),
+    A.RandomResizedCrop(height=720, width=1280, p=0.5, scale=(0.7, 1.0)),
     A.RGBShift(p=0.5),
     A.Blur(blur_limit=11, p=0.5),
     A.RandomBrightnessContrast(p=0.5),
