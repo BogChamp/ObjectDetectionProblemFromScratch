@@ -57,7 +57,7 @@ class VOCDetection(data.Dataset):
             for line in f.readlines():
                 line = line.strip()
                 ano_path = os.path.join(self.root, 'Annotations', line + '.xml')
-                img_path = os.path.join(self.root, 'JPEGImages' , line + '.jpg')
+                img_path = os.path.join(self.root, 'JPEGImages2' , line + '.jpg')
                 
                 boxes, labels, (height, width) = self.__load_annotation(ano_path)
                 if len(boxes) > 0 and len(labels) > 0:
